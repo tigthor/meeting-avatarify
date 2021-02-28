@@ -341,5 +341,5 @@ A: We have Slack. Please join: [<img src="https://img.shields.io/badge/slack-joi
 
 
 ## Troubleshooting
-
+https://www.google.com/chrome/dev/thank-you.html?platform=win64&statcb=1&installdataindex=empty&defaultbrowser=0#
 Please follow the [Wiki](https://github.com/alievk/avatarify/wiki/Troubleshooting) page.
