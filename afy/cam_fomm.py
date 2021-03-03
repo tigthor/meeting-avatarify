@@ -19,11 +19,10 @@ log = Tee('./var/log/cam_fomm.log')
 # Where to split an array from face_alignment to separate each landmark
 LANDMARK_SLICE_ARRAY = np.array([17, 22, 27, 31, 36, 42, 48, 60])
 
-if _platform == 'darwin':
-    if not opt.is_client:
-        info('\nOnly remote GPU mode is supported for Mac (use --is-client and --connect options to connect to the server)')
-        info('Standalone version will be available lately!\n')
-        exit()
+if _platform == 'darwin' and not opt.is_client:
+    info('\nOnly remote GPU mode is supported for Mac (use --is-client and --connect options to connect to the server)')
+    info('Standalone version will be available lately!\n')
+    exit()
 
 
 def is_new_frame_better(source, driving, predictor):
@@ -301,11 +300,10 @@ if __name__ == "__main__":
 
             frame = resize(frame, (IMG_SIZE, IMG_SIZE))[..., :3]
 
-            if find_keyframe:
-                if is_new_frame_better(avatar, frame, predictor):
-                    log("Taking new frame!")
-                    green_overlay = True
-                    predictor.reset_frames()
+            if find_keyframe and is_new_frame_better(avatar, frame, predictor):
+                log("Taking new frame!")
+                green_overlay = True
+                predictor.reset_frames()
 
             timing['preproc'] = tt.toc()
 
